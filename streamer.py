@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Web streaming example
-# SENT TO http://192.168.1.156:8000/index.html
+# SENT TO http://YOUR_IP/index.html
 #http://picamera.readthedocs.io/en/latest/recipes2.html#web-streaming
 
 
