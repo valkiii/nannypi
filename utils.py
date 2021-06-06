@@ -99,7 +99,7 @@ def move(update, context):
 
     global x_value
     global y_value
-    
+
     if len(message) < 3:
         update.message.reply_text('Write: \move left|right|up|down numeric_value')
     if message[1] == 'left':
@@ -128,7 +128,7 @@ def move(update, context):
             vertical_mvt(y_value)
     else:
         update.message.reply_text('Write: \move horizontal|vertical numeric_value')
-
+    print (x_value, y_value)
 
 # move the servo left
 def horizontal_mvt(pos):
