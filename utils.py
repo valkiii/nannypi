@@ -65,7 +65,7 @@ def move_right(x_value,v):
     except:
         return False
 
-def move_up(y_value,v):
+def move_down(y_value,v):
     try:
         pos = int(v)
         if 5 <= pos <= 30:
@@ -79,7 +79,7 @@ def move_up(y_value,v):
     except:
         return False
 
-def move_down(y_value,v):
+def move_up(y_value,v):
     try:
         pos = int(v)
         if 5 <= pos <= 30:
