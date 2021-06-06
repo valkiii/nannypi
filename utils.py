@@ -49,7 +49,7 @@ def move_left(x_value,v):
             x_value = pos
         return x_value
     except:
-		update.message.reply_text('Insert a valid number')
+        update.message.reply_text('Insert a valid number')
 
 def move_right(x_value,v):
     try:
@@ -63,7 +63,7 @@ def move_right(x_value,v):
             x_value = pos
         return x_value
     except:
-		update.message.reply_text('Insert a valid number')
+        update.message.reply_text('Insert a valid number')
 
 def move_up(y_value,v):
     try:
@@ -77,7 +77,7 @@ def move_up(y_value,v):
             y_value = pos
         return y_value
     except:
-		update.message.reply_text('Insert a valid number')
+        update.message.reply_text('Insert a valid number')
 
 def move_down(y_value,v):
     try:
@@ -91,7 +91,7 @@ def move_down(y_value,v):
             y_value = pos
         return y_value
     except:
-		update.message.reply_text('Insert a valid number')
+        update.message.reply_text('Insert a valid number')
 
 # Moving servo via telegram bot
 def move(update, context, x_value, y_value):
