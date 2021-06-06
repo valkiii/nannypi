@@ -95,6 +95,8 @@ def move_down(y_value,v):
 
 # Moving servo via telegram bot
 def move(update, context):
+    global x_value
+    global y_value
     message = update.message.text.split(' ')
     if len(message) < 3:
         update.message.reply_text('Write: \move left|right|up|down numeric_value')
