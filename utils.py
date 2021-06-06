@@ -20,8 +20,8 @@ pwm = PCA9685(0x40)
 pwm.set_pwm_freq(60)
 y_value = 200
 x_value = 300
-pwm.set_pwm(0,0,x_value) 
-pwm.set_pwm(1,0,y_value) 
+pwm.set_pwm(0,0,x_value)
+pwm.set_pwm(1,0,y_value)
 
 # function to understand it telegram bot is running
 def start(update, context):
@@ -37,25 +37,79 @@ def start_streaming(update,context):
 def stop_streaming(update,context):
 	stop_streamer()
 
+def move_left(x_value,v):
+	try:
+        pos = int(v)
+        if 20 <= pos <= 50:
+            x_value -= pos
+            x_value = max([min([pos,600]),110])
+        elif pos < 20:
+            x_value -= 20
+        elif pos > 50:
+            x_value = pos
+        return x_value
+    except:
+		update.message.reply_text('Insert a valid number')
+
+def move_right(x_value,v):
+	try:
+        pos = int(v)
+        if 20 <= pos <= 50:
+            x_value += pos
+            x_value = max([min([pos,600]),110])
+        elif pos < 20:
+            x_value -= 20
+        elif pos > 50:
+            x_value = pos
+        return x_value
+    except:
+		update.message.reply_text('Insert a valid number')
+
+def move_up(y_value,v):
+	try:
+        pos = int(v)
+        if 5 <= pos <= 30:
+            y_value += pos
+            y_value = max([min([pos,280]),120])
+        elif pos < 5:
+            y_value += 5
+        elif pos > 30:
+            y_value = pos
+        return y_value
+    except:
+		update.message.reply_text('Insert a valid number')
+
+def move_down(y_value,v):
+	try:
+        pos = int(v)
+        if 5 <= pos <= 30:
+            y_value -= pos
+            y_value = max([min([pos,280]),120])
+        elif pos < 5:
+            y_value += 5
+        elif pos > 30:
+            y_value = pos
+        return y_value
+    except:
+		update.message.reply_text('Insert a valid number')
+
 # Moving servo via telegram bot
-def move(update, context):
+def move(update, context, x_value, y_value):
 	message = update.message.text.split(' ')
 	if len(message) < 3:
-		update.message.reply_text('Write: \move horizontal|vertical numeric_value')
-	if message[1] == 'horizontal':
-		try:
-			pos = int(message[2])
-			pos = max([min([pos,600]),110])
-			horizontal_mvt(pos)
-		except:
-			update.message.reply_text('Insert a valid number')
-	elif message[1] == 'vertical':
-		try:
-			pos = int(message[2])
-			pos = max([min([pos,280]),120])
-			vertical_mvt(pos)
-		except:
-			update.message.reply_text('Insert a valid number')
+		update.message.reply_text('Write: \move left|right|up|down numeric_value')
+    if message[1] == 'left':
+        x_value = move_left(x_value,message[2])
+        horizontal_mvt(x_value)
+    elif message[1] == 'right':
+        x_value = move_right(x_value,message[2])
+        horizontal_mvt(x_value)
+	elif message[1] == 'up':
+		y_value = move_up(y_value,v)
+        vertical_mvt(y_value)
+    elif message[1] == 'down':
+		y_value = move_down(y_value,v)
+        vertical_mvt(y_value)
 	else:
 		update.message.reply_text('Write: \move horizontal|vertical numeric_value')
 
@@ -67,7 +121,7 @@ def horizontal_mvt(pos):
 # move the servo left
 def vertical_mvt(pos):
 	pwm.set_pwm(1, 0, pos)
-    
+
 # Sending picture files via telegram bot
 def send_picture(update, context):
 	dummy=True
@@ -89,7 +143,7 @@ def pid_to_kill(process):
 	l = process.split('        ')
 	return(l[1][:4])
 
-# stops the streamer 
+# stops the streamer
 def stop_streamer():
 	ps   = subprocess.Popen(['ps','-ef'],    shell=False, stdout=subprocess.PIPE)
 	grep = subprocess.Popen(['grep', 'python'], shell=False, stdin=ps.stdout, stdout=subprocess.PIPE)
@@ -101,7 +155,7 @@ def stop_streamer():
 def start_streamer():
 	process = subprocess.Popen(['python3','streamer.py','&'], shell=False, stdout=subprocess.PIPE)
 
-# takes picture with the camera 
+# takes picture with the camera
 def take_picture():
 	camera = PiCamera()
 	camera.start_preview()
@@ -111,12 +165,12 @@ def take_picture():
 
 
 
-    
 
-## Experimental functions 
+
+## Experimental functions
 
 ## function to handle the /help command
-#def help(update, context): 
+#def help(update, context):
 #    update.message.reply_text('help command received')
 
 ## function to handle errors occured in the dispatcher
