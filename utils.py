@@ -95,23 +95,23 @@ def move_down(y_value,v):
 
 # Moving servo via telegram bot
 def move(update, context, x_value, y_value):
-	message = update.message.text.split(' ')
-	if len(message) < 3:
-		update.message.reply_text('Write: \move left|right|up|down numeric_value')
+    message = update.message.text.split(' ')
+    if len(message) < 3:
+        update.message.reply_text('Write: \move left|right|up|down numeric_value')
     if message[1] == 'left':
         x_value = move_left(x_value,message[2])
         horizontal_mvt(x_value)
     elif message[1] == 'right':
         x_value = move_right(x_value,message[2])
         horizontal_mvt(x_value)
-	elif message[1] == 'up':
-		y_value = move_up(y_value,v)
+    elif message[1] == 'up':
+        y_value = move_up(y_value,v)
         vertical_mvt(y_value)
     elif message[1] == 'down':
-		y_value = move_down(y_value,v)
+        y_value = move_down(y_value,v)
         vertical_mvt(y_value)
-	else:
-		update.message.reply_text('Write: \move horizontal|vertical numeric_value')
+    else:
+        update.message.reply_text('Write: \move horizontal|vertical numeric_value')
 
 
 # move the servo left
