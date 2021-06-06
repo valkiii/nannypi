@@ -37,7 +37,7 @@ def start_streaming(update,context):
 def stop_streaming(update,context):
 	stop_streamer()
 
-def move_left(x_value,v):
+def move_right(x_value,v):
     try:
         pos = int(v)
         if 20 <= pos <= 50:
@@ -51,7 +51,7 @@ def move_left(x_value,v):
     except:
         return False
 
-def move_right(x_value,v):
+def move_left(x_value,v):
     try:
         pos = int(v)
         if 20 <= pos <= 50:
