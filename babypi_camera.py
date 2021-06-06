@@ -84,11 +84,12 @@ class Recorder():
         wf.setframerate(RATE)
         wf.writeframes(recording)
         wf.close()
-        
+
         print('Written to file: {}'.format(filename))
         print('Sending file via Telegram Bot')
-        for chat_id in config['DEFAULT']['AllowedUsers']:
-            self.bot.send_audio(chat_id=chat_id,audio=open('records/0.wav','rb'))
+        #for chat_id in config['DEFAULT']['AllowedUsers']:
+        self.bot.send_audio(chat_id=498676536,audio=open('records/0.wav','rb'))
+        self.bot.send_audio(chat_id=1762686116,audio=open('records/0.wav','rb'))
         print('Removing file')
         os.remove(filename)
         print('Returning to listening')
@@ -102,7 +103,7 @@ class Recorder():
                 self.record()
 
 def main():
-    
+
 	updater = Updater(config['DEFAULT']['Token'], use_context=True)
 	dispatcher = updater.dispatcher
 	dispatcher.add_handler(CommandHandler("start", start))

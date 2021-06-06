@@ -1,4 +1,2 @@
 # nannypi
-Make your rasberry pi a smart babymonitor.
-
-
+Make yout rasberry pi a smart babymonitor
