@@ -38,7 +38,7 @@ def stop_streaming(update,context):
 	stop_streamer()
 
 def move_left(x_value,v):
-	try:
+    try:
         pos = int(v)
         if 20 <= pos <= 50:
             x_value -= pos
@@ -52,7 +52,7 @@ def move_left(x_value,v):
 		update.message.reply_text('Insert a valid number')
 
 def move_right(x_value,v):
-	try:
+    try:
         pos = int(v)
         if 20 <= pos <= 50:
             x_value += pos
@@ -66,7 +66,7 @@ def move_right(x_value,v):
 		update.message.reply_text('Insert a valid number')
 
 def move_up(y_value,v):
-	try:
+    try:
         pos = int(v)
         if 5 <= pos <= 30:
             y_value += pos
@@ -80,7 +80,7 @@ def move_up(y_value,v):
 		update.message.reply_text('Insert a valid number')
 
 def move_down(y_value,v):
-	try:
+    try:
         pos = int(v)
         if 5 <= pos <= 30:
             y_value -= pos
