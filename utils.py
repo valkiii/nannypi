@@ -94,7 +94,7 @@ def move_down(y_value,v):
         update.message.reply_text('Insert a valid number')
 
 # Moving servo via telegram bot
-def move(update, context, x_value, y_value):
+def move(update, context):
     message = update.message.text.split(' ')
     if len(message) < 3:
         update.message.reply_text('Write: \move left|right|up|down numeric_value')
