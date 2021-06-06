@@ -42,7 +42,7 @@ def move_left(x_value,v):
         pos = int(v)
         if 20 <= pos <= 50:
             x_value -= pos
-            x_value = max([min([pos,600]),110])
+            x_value = max([min([x_value,600]),110])
         elif pos < 20:
             x_value -= 20
         elif pos > 50:
@@ -56,7 +56,7 @@ def move_right(x_value,v):
         pos = int(v)
         if 20 <= pos <= 50:
             x_value += pos
-            x_value = max([min([pos,600]),110])
+            x_value = max([min([x_value,600]),110])
         elif pos < 20:
             x_value += 20
         elif pos > 50:
@@ -70,7 +70,7 @@ def move_up(y_value,v):
         pos = int(v)
         if 5 <= pos <= 30:
             y_value += pos
-            y_value = max([min([pos,280]),120])
+            y_value = max([min([y_value,280]),120])
         elif pos < 5:
             y_value += 5
         elif pos > 30:
@@ -84,7 +84,7 @@ def move_down(y_value,v):
         pos = int(v)
         if 5 <= pos <= 30:
             y_value -= pos
-            y_value = max([min([pos,280]),120])
+            y_value = max([min([y_value,280]),120])
         elif pos < 5:
             y_value -= 5
         elif pos > 30:
