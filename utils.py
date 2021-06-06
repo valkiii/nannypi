@@ -58,7 +58,7 @@ def move_right(x_value,v):
             x_value += pos
             x_value = max([min([pos,600]),110])
         elif pos < 20:
-            x_value -= 20
+            x_value += 20
         elif pos > 50:
             x_value = pos
         return x_value
@@ -86,7 +86,7 @@ def move_down(y_value,v):
             y_value -= pos
             y_value = max([min([pos,280]),120])
         elif pos < 5:
-            y_value += 5
+            y_value -= 5
         elif pos > 30:
             y_value = pos
         return y_value
