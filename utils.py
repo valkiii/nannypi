@@ -49,7 +49,7 @@ def move_left(x_value,v):
             x_value = pos
         return x_value
     except:
-        update.message.reply_text('Insert a valid number')
+        return False
 
 def move_right(x_value,v):
     try:
@@ -63,7 +63,7 @@ def move_right(x_value,v):
             x_value = pos
         return x_value
     except:
-        update.message.reply_text('Insert a valid number')
+        return False
 
 def move_up(y_value,v):
     try:
@@ -77,7 +77,7 @@ def move_up(y_value,v):
             y_value = pos
         return y_value
     except:
-        update.message.reply_text('Insert a valid number')
+        return False
 
 def move_down(y_value,v):
     try:
@@ -91,7 +91,7 @@ def move_down(y_value,v):
             y_value = pos
         return y_value
     except:
-        update.message.reply_text('Insert a valid number')
+        return False
 
 # Moving servo via telegram bot
 def move(update, context):
@@ -102,16 +102,28 @@ def move(update, context):
         update.message.reply_text('Write: \move left|right|up|down numeric_value')
     if message[1] == 'left':
         x_value = move_left(x_value,message[2])
-        horizontal_mvt(x_value)
+        if not x_value:
+            update.message.reply_text('Insert a valid number')
+        else:
+            horizontal_mvt(x_value)
     elif message[1] == 'right':
         x_value = move_right(x_value,message[2])
-        horizontal_mvt(x_value)
+        if not x_value:
+            update.message.reply_text('Insert a valid number')
+        else:
+            horizontal_mvt(x_value)
     elif message[1] == 'up':
         y_value = move_up(y_value,v)
-        vertical_mvt(y_value)
+        if not y_value:
+            update.message.reply_text('Insert a valid number')
+        else:
+            vertical_mvt(y_value)
     elif message[1] == 'down':
         y_value = move_down(y_value,v)
-        vertical_mvt(y_value)
+        if not y_value:
+            update.message.reply_text('Insert a valid number')
+        else:
+            vertical_mvt(y_value)
     else:
         update.message.reply_text('Write: \move horizontal|vertical numeric_value')
 
